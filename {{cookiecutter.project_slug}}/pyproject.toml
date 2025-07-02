@@ -33,9 +33,3 @@ root = ".."
 write_to = "control/src/{{cookiecutter.package_name}}/_version.py"
 version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
-
-
-
-
-
-
