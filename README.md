@@ -44,7 +44,7 @@ Here you can see the inputs and the auto-generated defaults from the package nam
 [5/10] author_name (Your Name): Josh Harris
 [6/10] author_email (your.email@example.com): josh.harris@stfc.ac.uk
 [7/10] description (Package description): Creating new odin-control adapter
-[8/10] python_requires (>=3.10):
+[8/10] python_requires (3.10):
 [9/10] github_org (stfc-aeg):
 [10/10] github_url (https://github.com/stfc-aeg/new_adapter/control):
 ```

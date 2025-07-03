@@ -6,11 +6,11 @@ build-backend = "setuptools.build_meta"
 name = "{{cookiecutter.package_name}}"
 description = "{{cookiecutter.description}}"
 dynamic = ["version"]
-requires-python = "{{cookiecutter.python_requires}}"
+requires-python = ">={{cookiecutter.python_requires}}"
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: Apache Software License",
-    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: {{cookiecutter.python_requires}}",
 ]
 dependencies = [
     "odin-control @ git+https://github.com/odin-detector/odin-control@1.5.0#egg=odin-control"
