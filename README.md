@@ -2,7 +2,7 @@
 CookieCutter templated repo for setting up a new odin-control adapter, for usage with Github action or to be used as a template with cookiecutter on terminals.
 
 
-## Github Action usage - For members of STFC-AEG organisation:
+## Github Action usage - For members of STFC-AEG organisation in the "dssg_developers" team:
 
 1) Click on actions within the odin-control-adapter-template
 2) Click on "Create odin-control Adapter Repo" workflow
