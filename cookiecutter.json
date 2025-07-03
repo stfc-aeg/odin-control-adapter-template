@@ -8,5 +8,5 @@
     "description": "Package description",
     "python_requires": ">=3.10",
     "github_org": "stfc-aeg",
-    "github_url": "https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.project_slug }}"
+    "github_url": "https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.project_name }}/{{ cookiecutter.project_slug }}"
 }
