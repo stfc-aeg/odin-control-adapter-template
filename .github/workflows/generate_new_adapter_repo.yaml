@@ -14,19 +14,17 @@ on:
         description: 'Author Name'
         required: true
         type: string
-        default: 'Josh Harris'
       author_email:
         description: 'Author Email'
         required: true
         type: string
-        default: 'josh.harris@stfc.ac.uk'
       description:
         description: 'Project Description'
         required: true
         type: string
         default: 'odin-control adapter'
       project_slug:
-        description: 'Directory name'
+        description: 'Top level Directory name'
         required: false
         type: string
         default: 'control'
@@ -35,18 +33,10 @@ jobs:
   create-project:
     runs-on: ubuntu-latest
     steps:  
-    # Commented out manually cloning template repo, to try and use the public gh-link to the template and use gha-cookiecutter mechanism to use template
-    #- uses: actions/checkout@v4
-    
-   # - name: Generate project from template
-   #   uses: andrewthetechie/gha-cookiecutter@main
-   #   with:
-   #    template: .
-
     - name: Generate project from Github stored template
       uses: andrewthetechie/gha-cookiecutter@main
       with:
-        template: gh:JoshHarris2108/odin-control-template
+        template: gh:stfc-aeg/odin-control-adapter-template
         cookiecutterValues: |
           {
             "project_name": "${{ github.event.inputs.project_name }}",
@@ -55,24 +45,24 @@ jobs:
             "author_email": "${{ github.event.inputs.author_email }}",
             "description": "${{ github.event.inputs.description }}",
             "python_requires": ">=3.10",
-            "github_org": "JoshHarris2108",
-            "github_url": "https://github.com/JoshHarris2108/${{ github.event.inputs.repository_name }}"
+            "github_org": "stfc-aeg",
+            "github_url": "https://github.com/stfc-aeg/${{ github.event.inputs.repository_name }}"
           }
     
     - name: Create GitHub repository
       env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.STFC_AEG_TOKEN }}
       run: |
-        gh repo create "JoshHarris2108/${{ github.event.inputs.repository_name }}" \
+        gh repo create "stfc-aeg/${{ github.event.inputs.repository_name }}" \
           --description "${{ github.event.inputs.description }}" \
           --private
     
     - name: Push files to new repository
       env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.STFC_AEG_TOKEN }}
       run: |
         # Clone the empty repository with auth token
-        git clone "https://${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/JoshHarris2108/${{ github.event.inputs.repository_name }}.git"
+        git clone "https://${{ secrets.STFC_AEG_TOKEN }}@github.com/stfc-aeg/${{ github.event.inputs.repository_name }}.git"
         
         # Copy generated files into the cloned repo
         cp -r "${{ github.event.inputs.project_slug }}" "${{ github.event.inputs.repository_name }}/"
