@@ -14,7 +14,10 @@ class {{class_prefix}}Controller(BaseController):
         self.options = options
         self.example_param = "Example"
         self.param_tree = ParameterTree({
-            "example_param": (lambda: self.example_param,  lambda v: setattr(self, 'example_param', v))
+            "example_param": (
+                lambda: self.example_param,
+                lambda v: setattr(self, 'example_param', v),
+                {"description": "Example Parameter for Template"})
         })
 
     def initialize(self, adapters):
