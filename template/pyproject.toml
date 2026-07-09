@@ -3,33 +3,38 @@ requires = ["setuptools>=64", "setuptools_scm>=8", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "{{cookiecutter.package_name}}"
-description = "{{cookiecutter.description}}"
+name = "{{package_name}}"
+description = "{{description}}"
 dynamic = ["version"]
-requires-python = ">={{cookiecutter.python_requires}}"
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: Apache Software License",
-    "Programming Language :: Python :: {{cookiecutter.python_requires}}",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "odin-control @ git+https://github.com/odin-detector/odin-control@1.5.0#egg=odin-control"
+    "odin-control>=2.0",
 ]
 readme = "README.md"
 
 [[project.authors]] 
-email = "{{cookiecutter.author_email}}"
-name = "{{cookiecutter.author_name}}"
+email = "{{author_email}}"
+name = "{{author_name}}"
 
 [project.urls]
-GitHub = "{{cookiecutter.github_url}}"
+GitHub = "{{github_url}}"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools_scm]
 # Optional settings for setuptools_scm
-root = ".."
-write_to = "control/src/{{cookiecutter.package_name}}/_version.py"
+root = "."
+write_to = "src/{{package_name}}/_version.py"
 version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"

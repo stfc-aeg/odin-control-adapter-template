@@ -1,0 +1,9 @@
+from odin_control.adapters.adapter import ApiAdapter
+from .controller import {{class_prefix}}Controller, {{class_prefix}}Error
+
+
+class {{class_prefix}}Adapter(ApiAdapter):
+    """{{class_prefix}} Adapter class inheriting base adapter functionality."""
+
+    controller_cls = {{class_prefix}}Controller
+    error_cls = {{class_prefix}}Error

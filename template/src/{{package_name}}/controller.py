@@ -1,15 +1,14 @@
 import logging
-from odin.adapters.parameter_tree import ParameterTree, ParameterTreeError
+from odin_control.adapters.parameter_tree import ParameterTree, ParameterTreeError
+from odin_control.adapters.base_controller import BaseController, BaseError
 
-from .base.base_controller import BaseController, BaseError
 
-
-class {{cookiecutter.class_prefix}}Error(BaseError):
+class {{class_prefix}}Error(BaseError):
     """Simple exception class to wrap lower-level exceptions."""
 
 
-class {{cookiecutter.class_prefix}}Controller(BaseController):
-    """Controller class for {{cookiecutter.class_prefix.upper()}}."""
+class {{class_prefix}}Controller(BaseController):
+    """Controller class for {{class_prefix}}."""
 
     def __init__(self, options):
         self.options = options
@@ -24,18 +23,18 @@ class {{cookiecutter.class_prefix}}Controller(BaseController):
         # Add to param tree if needed post-initialization
 
     def cleanup(self):
-        logging.info("Cleaning up {{cookiecutter.class_prefix}}Controller")
+        logging.info("Cleaning up {{class_prefix}}Controller")
 
     def get(self, path, with_metadata=False):
         try:
             return self.param_tree.get(path, with_metadata)
         except ParameterTreeError as error:
             logging.error(error)
-            raise {{cookiecutter.class_prefix}}Error(error)
+            raise {{class_prefix}}Error(error)
 
     def set(self, path, data):
         try:
             self.param_tree.set(path, data)
         except ParameterTreeError as error:
             logging.error(error)
-            raise {{cookiecutter.class_prefix}}Error(error)
+            raise {{class_prefix}}Error(error)

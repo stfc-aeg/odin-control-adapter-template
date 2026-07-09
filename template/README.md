@@ -1,3 +1,5 @@
-# {{cookiecutter.project_name}}
+# {{project_name}}
 
-{{cookiecutter.description}}
+{{description}}
+
+Project scaffolded using [Copier](https://copier.readthedocs.io/)
