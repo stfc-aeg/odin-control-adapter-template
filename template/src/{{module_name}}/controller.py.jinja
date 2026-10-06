@@ -10,9 +10,13 @@ class {{class_prefix}}Error(BaseError):
 
 
 class {{class_prefix}}Controller(BaseController):
-    """Controller class for {{class_prefix}}."""
+    """Controller class for {{project_name}}."""
 
-    def __init__(self, options):
+    def __init__(self, options: dict[str, str]):
+        """Initialize the controller with configuration options.
+
+        :param options: Dictionary containing configuration options for the controller.
+        """
         self.options = options
         self.example_param = "Example"
 
@@ -26,14 +30,34 @@ class {{class_prefix}}Controller(BaseController):
         self.param_tree = ParameterTree(tree)
 
     def initialize(self, adapters):
+        """Initialize the controller with access to other adapters.
+
+        This method is called after all adapters have been loaded and allows
+        the controller to establish inter-adapter communication if needed.
+
+        :param adapters: Dictionary mapping adapter names to adapter instances.
+        """
         self.adapters = adapters
         logging.debug(f"Adapters initialized: {list(adapters.keys())}")
         # Add to param tree if needed post-initialization
 
     def cleanup(self):
+        """Clean up controller resources and state.
+
+        This method should be implemented to properly clean up any resources,
+        close connections, or perform other shutdown tasks when the controller
+        is being stopped or destroyed.
+        """
         logging.info("Cleaning up {{class_prefix}}Controller")
 
     def get(self, path, with_metadata=False):
+        """Get data from the controller at the specified path.
+
+        :param path: The path string identifying the resource to retrieve.
+        :param with_metadata: Whether to include metadata in the response.
+
+        :return: The requested data, format depends on controller implementation.
+        """
         try:
             return self.param_tree.get(path, with_metadata)
         except ParameterTreeError as error:
@@ -41,6 +65,11 @@ class {{class_prefix}}Controller(BaseController):
             raise {{class_prefix}}Error(error)
 
     def set(self, path, data):
+        """Set data in the controller at the specified path.
+
+        :param path: The path string identifying the resource to modify.
+        :param data: The data to set at the specified path.
+        """
         try:
             self.param_tree.set(path, data)
         except ParameterTreeError as error:
