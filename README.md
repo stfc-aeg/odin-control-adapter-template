@@ -21,9 +21,9 @@ Copier will then prompt various inputs, with default options, to name the projec
 🎤 Name of the Python package this project will create.
    new_adapter
 🎤 Your Name
-   David Example
+   Penny Sterling
 🎤 Your Email Address
-   david@example.com
+   penny.sterling@example.com
 🎤 Short description for the Python Package
    Demo of Template
 🎤 The organisation that owns the Github repo for this project
@@ -39,9 +39,9 @@ Copying from template version 1.0.0
     create  src/new_adapter/controller.py
     create  src/new_adapter/adapter.py
     create  .gitignore
-    create  web
-    create  web/config
-    create  web/config/odin.cfg
+    create  test
+    create  test/config
+    create  test/config/odin.cfg
     create  pyproject.toml
     create  .copier-answers.yml
 
@@ -93,7 +93,7 @@ Successfully installed new_adapter-0.0.post1.dev0+d20261006 odin-control-2.1.0 p
 See the [Odin Control Docs](https://odin-detector.github.io/odin-control/getting-started/) for detailed info on running and interacting with Adapter projects.
 
 ```bash
-odin_control --config web/config/odin.cfg
+odin_control --config test/config/odin.cfg
 ```
 ### Expected output:
 ```
