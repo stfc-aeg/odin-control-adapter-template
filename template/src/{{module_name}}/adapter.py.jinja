@@ -1,0 +1,13 @@
+"""Adapter Module for {{project_name}}."""
+
+from odin_control.adapters.adapter import ApiAdapter
+from .controller import {{class_prefix}}Controller, {{class_prefix}}Error
+from ._version import __version__
+
+
+class {{class_prefix}}Adapter(ApiAdapter):
+    """{{project_name}} Adapter class inheriting base adapter functionality."""
+
+    controller_cls = {{class_prefix}}Controller
+    error_cls = {{class_prefix}}Error
+    version = __version__
