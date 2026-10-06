@@ -6,10 +6,10 @@ project_name:
 package_name:
   type: str
   help: Name of the Python package this project will create.
-  default: "{{ project_name.lower().replace(' ', '_').replace('-', '_') }}"
+  default: "{{ project_name.lower().replace(' ', '-') }}"
   validator: >-
-        {% if not (package_name | regex_search('^[a-z][a-z0-9\_]+$')) %}
-        Package name must start with a letter, followed one or more letters, digits or underscores all lowercase
+        {% if not (package_name | regex_search('^[a-z][a-z0-9\_-.]+[a-z0-9]$')) %}
+        Must consist of ASCII letters, digits, underscores "_", hyphens "-" and periods ".". It must not start or end with an underscore, hyphen or period.
         {% endif %}
 author_name: 
   type: str
@@ -38,4 +38,9 @@ github_url:
 class_prefix:
   type: str
   default: "{{project_name.replace('-', ' ').replace('_', ' ').title().replace(' ', '')}}"
+  when: false
+
+module_name:
+  type: str
+  default: "{{package_name.lower().replace('-', '_').replace(' ', '_')}}"
   when: false

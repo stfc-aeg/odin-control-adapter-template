@@ -21,9 +21,9 @@ Copier will then prompt various inputs, with default options, to name the projec
 🎤 Name of the Python package this project will create.
    new_adapter
 🎤 Your Name
-   Ashley Neaves
+   David Example
 🎤 Your Email Address
-   ashley.neaves@stfc.ac.uk
+   david@example.com
 🎤 Short description for the Python Package
    Demo of Template
 🎤 The organisation that owns the Github repo for this project
