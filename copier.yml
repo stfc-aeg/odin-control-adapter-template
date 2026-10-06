@@ -44,3 +44,15 @@ module_name:
   type: str
   default: "{{package_name.lower().replace('-', '_').replace(' ', '_')}}"
   when: false
+
+
+_message_after_copy: |
+  Your Project "{{project_name}}" has been created successfully!
+  
+  Next Steps:
+  1. Change directory to the project root:
+     $ cd {{ _copier_conf.dst_path }}
+  2. Initialise Git Repo (if not already done):
+     $ git init
+  3. Install into Python Environment
+     $ pip install -e .

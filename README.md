@@ -39,11 +39,13 @@ Copying from template version 1.0.0
     create  src/new_adapter/controller.py
     create  src/new_adapter/adapter.py
     create  .gitignore
+    create  pyproject.toml
+    create  .copier-answers.yml
     create  test
     create  test/config
     create  test/config/odin.cfg
-    create  pyproject.toml
-    create  .copier-answers.yml
+    create  test/static
+    create  test/static/index.html
 
 
 ```
@@ -78,9 +80,9 @@ pip install -e .
 ### Expected output:
 ```
 .....
-Successfully built new_adapter
-Installing collected packages: tornado, psutil, odin-control, new_adapter
-Successfully installed new_adapter-0.0.post1.dev0+d20261006 odin-control-2.1.0 psutil-7.2.2 tornado-6.5.10
+Successfully built new-adapter
+Installing collected packages: tornado, psutil, odin-control, new-adapter
+Successfully installed new-adapter-0.0.post1.dev0+d20261006 odin-control-2.1.0 psutil-7.2.2 tornado-6.5.10
 ```
 
 > [!NOTE]
@@ -102,7 +104,7 @@ odin_control --config test/config/odin.cfg
 [D YYMMDD hh:mm:dd api:101] Registered API adapter class NewAdapterAdapter from module new_adapter.adapter for path new_adapter
 [D YYMMDD hh:mm:dd adapter:72] NewAdapterAdapter initialize called with 1 adapters
 [D YYMMDD hh:mm:dd controller:31] Adapters initialized: []
-[W YYMMDD hh:mm:dd default:38] Default handler static path does not exist: web/static
+[W YYMMDD hh:mm:dd default:32] Static path for default handler is test/static
 [I YYMMDD hh:mm:dd server:85] HTTP server listening on 127.0.0.1:8888
 ```
 
