@@ -8,7 +8,7 @@ package_name:
   help: Name of the Python package this project will create.
   default: "{{ project_name.lower().replace(' ', '-') }}"
   validator: >-
-        {% if not (package_name | regex_search('^[a-z][a-z0-9\_-.]+[a-z0-9]$')) %}
+        {% if not (package_name | regex_search('^[a-z][a-z0-9\_\-\.]+[a-z0-9]$')) %}
         Must consist of ASCII letters, digits, underscores "_", hyphens "-" and periods ".". It must not start or end with an underscore, hyphen or period.
         {% endif %}
 author_name: 
