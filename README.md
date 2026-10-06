@@ -1,99 +1,124 @@
-# odin-control-adapter-template
-CookieCutter templated repo for setting up a new odin-control adapter, for usage with Github action or to be used as a template with cookiecutter on terminals.
+# Odin Control Adapter Template
+[Copier](https://copier.readthedocs.io/en/stable) templated Adapter project for Odin Control.
+
+## Usage Guide:
+
+Uses requires a **Python 3.10 or Newer** environment with Copier installed. This can be a virtual environment.
+```bash
+pip install copier
+```
+
+Once installed, use it to generate your project with the template:
+```bash
+# Copier can create a new directory for your project. Provide it as the second argument to the "copier copy" command
+copier copy gh:stfc-aeg/odin-control-adapter-template projects/new_adapter
+```
+
+Copier will then prompt various inputs, with default options, to name the project and fill in the project information. An example of this is shown below.
+```
+🎤 Name of the Project.
+   New Adapter
+🎤 Name of the Python package this project will create.
+   new_adapter
+🎤 Your Name
+   Ashley Neaves
+🎤 Your Email Address
+   ashley.neaves@stfc.ac.uk
+🎤 Short description for the Python Package
+   Demo of Template
+🎤 The organisation that owns the Github repo for this project
+   stfc-aeg
+🎤 The URL of the github repo for this project
+   https://github.com/stfc-aeg/new_adapter
+
+Copying from template version 1.0.0
+    create  README.md
+    create  src
+    create  src/new_adapter
+    create  src/new_adapter/__init__.py
+    create  src/new_adapter/controller.py
+    create  src/new_adapter/adapter.py
+    create  .gitignore
+    create  web
+    create  web/config
+    create  web/config/odin.cfg
+    create  pyproject.toml
+    create  .copier-answers.yml
 
 
-## Github Action usage - For members of STFC-AEG organisation in the "dssg_developers" team:
+```
+> [!NOTE]
+> Some of these will have default values already filled in, based on previous answers.
+> For instance, the email field will be generated from whatever was entered in the "Your Name" field.
 
-1) Click on actions within the odin-control-adapter-template
-2) Click on "Create odin-control Adapter Repo" workflow
-3) Look for box with "This workflow has a workflow_dispatch event trigger." and a "Run workflow" dropdown
-4) Click "Run workflow" choose the workflow from a branch (main only currently), input the required information into the form
-5) New Adapter repo created!
 
-## Manual adapter creation - For all users:
+## Installing the Project
+It is recommended that Odin Control projects are installed into Virtual Environments specific for each project.
+You can create this venv with whatever tools you prefer. The standard method is shown here as an example:
 
 ```bash
-# Create virtual environments, one for cookiecutter to install into,
-# we can delete this later, one to isntall the created odin-control package into
-# Alternatively, use pipx to run cookiecutter without creating a virtualenv if installed on your machine
-mkdir dir_name
-cd dir_name
-virtualenv cc
-virtualenv adapter
-source cc/bin/activate
-
-# Install cookiecutter
-pip install cookiecutter
-
-# Create adapter directory
-mkdir odin-adapter
-cd odin-adapter
-
-# Initialize git repository
-git init
-
-cookiecutter gh:stfc-aeg/odin-control-adapter-template
-```
-### Expected output: 
-Here you can see the inputs and the auto-generated defaults from the package name input, new_adpater is generated for the package name, and NewAdapter for the class prefix, as these prompts show, if you are happy with the default value just press enter, else enter a string to override the default generated value.
-```
-[1/10] project_name (Package Name): new adapter
-[2/10] project_slug (control):
-[3/10] package_name (new_adapter):
-[4/10] class_prefix (NewAdapter):
-[5/10] author_name (Your Name): Josh Harris
-[6/10] author_email (your.email@example.com): josh.harris@stfc.ac.uk
-[7/10] description (Package description): Creating new odin-control adapter
-[8/10] python_requires (3.10):
-[9/10] github_org (stfc-aeg):
-[10/10] github_url (https://github.com/stfc-aeg/new_adapter/control):
-```
-
-
-```bash
+# If an alternate Virtual Environment was used for the previous step, deactive it
 deactivate
-rm -rf ../cc
-source ../adapter/bin/activate
-cd control
-pip install --upgrade pip
+# Move into the project directory.
+cd projects/new_adapter
+# Create the Venv using the standard tools from Python.
+virtualenv new-adapter
+# Activate the Virtual Environment
+source new-adapter/bin/activate
+```
+
+We can then install the project into the virtual enviroment, where it will also install the required dependencies.
+
+```bash
+# First, ensure the project is a valid Git Repo, so that the tools to generate versioning tags can function.
+git init
+# Then, install the project in Editable Mode, so that any changes made are automatically updated in the instaled package.
 pip install -e .
 ```
 ### Expected output:
 ```
 .....
-Successfully built new_adapter odin-control
-Installing collected packages: tornado, pyzmq, psutil, future, odin-control, new_adapter
-Successfully installed future-1.0.0 new_adapter-0.0.post1.dev0+d20250703 odin-control-1.5.0 psutil-7.0.0 pyzmq-27.0.0 tornado-6.5.1
+Successfully built new_adapter
+Installing collected packages: tornado, psutil, odin-control, new_adapter
+Successfully installed new_adapter-0.0.post1.dev0+d20261006 odin-control-2.1.0 psutil-7.2.2 tornado-6.5.10
 ```
+
+> [!NOTE]
+> Some version numbers may be different, depending on development of the required packages.
+> This should not cause any issue, but be sure to check the [Odin Control Documentation](https://odin-detector.github.io/odin-control/) and
+> [Release Page](https://github.com/odin-detector/odin-control/releases) for information about any changes.
+
+
+## Running the Project
+See the [Odin Control Docs](https://odin-detector.github.io/odin-control/getting-started/) for detailed info on running and interacting with Adapter projects.
 
 ```bash
 odin_control --config web/config/odin.cfg
 ```
 ### Expected output:
 ```
-[D 250703 14:20:28 selector_events:59] Using selector: EpollSelector
-[D 250703 14:20:28 base_adapter:27] NewAdapterAdapter loaded
-[D 250703 14:20:28 api:145] Registered API adapter class NewAdapterAdapter from module new_adapter.adapter for path new_adapter
-[D 250703 14:20:28 base_adapter:31] NewAdapterAdapter initialize called with 1 adapters
-[D 250703 14:20:28 controller:23] Adapters initialized: []
-[W 250703 14:20:28 default:38] Default handler static path does not exist: web/static
-[I 250703 14:20:28 server:78] HTTP server listening on 127.0.0.1:8888
+[D YYMMDD hh:mm:dd selector_events:54] Using selector: EpollSelector
+[D YYMMDD hh:mm:dd base_adapter:61] NewAdapterAdapter loaded
+[D YYMMDD hh:mm:dd api:101] Registered API adapter class NewAdapterAdapter from module new_adapter.adapter for path new_adapter
+[D YYMMDD hh:mm:dd adapter:72] NewAdapterAdapter initialize called with 1 adapters
+[D YYMMDD hh:mm:dd controller:31] Adapters initialized: []
+[W YYMMDD hh:mm:dd default:38] Default handler static path does not exist: web/static
+[I YYMMDD hh:mm:dd server:85] HTTP server listening on 127.0.0.1:8888
 ```
+
+## Updating from the Template
+
+Copier can be used to [update a project](https://copier.readthedocs.io/en/stable/updating/) after creation. This can be used to make changes to the answers given when first creating the project, or copy updates made to the template.
+
+Ensure any current changes have been commited to Git, and then run the following command from within the project directory:
 
 ```bash
-http get 127.0.0.1:8888/api/0.1/new_adapter
+copier update
 ```
 
-### Expected output:
-```
-HTTP/1.1 200 OK
-Content-Length: 28
-Content-Type: application/json; charset=UTF-8
-Date: Thu, 03 Jul 2025 13:21:46 GMT
-Etag: "d0ac11012c5651469a98785c95dbc896119b1c0a"
-Server: TornadoServer/6.5.1
+This will show the prompts for input again, with the already entered values. These values can be altered, and Copier will attempt to update the project with the new values and any updates made to the template.
 
-{
-    "example_param": "Example"
-}
-```
+> [!WARNING]
+> Depending on your development, this may cause Conflicts. Be sure to check your project for any inline Conflict markers after this step.
+> See the [Copier Docs](https://copier.readthedocs.io/en/stable/updating/) for more information.
+

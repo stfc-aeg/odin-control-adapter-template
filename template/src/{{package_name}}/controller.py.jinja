@@ -1,7 +1,6 @@
 """Controller Module for {{project_name}}."""
 
 import logging
-from typing import override
 from odin_control.adapters.parameter_tree import ParameterTree, ParameterTreeError
 from odin_control.adapters.base_controller import BaseController, BaseError
 
@@ -13,7 +12,6 @@ class {{class_prefix}}Error(BaseError):
 class {{class_prefix}}Controller(BaseController):
     """Controller class for {{class_prefix}}."""
 
-    @override
     def __init__(self, options):
         self.options = options
         self.example_param = "Example"
@@ -27,17 +25,14 @@ class {{class_prefix}}Controller(BaseController):
         }
         self.param_tree = ParameterTree(tree)
 
-    @override
     def initialize(self, adapters):
         self.adapters = adapters
         logging.debug(f"Adapters initialized: {list(adapters.keys())}")
         # Add to param tree if needed post-initialization
 
-    @override
     def cleanup(self):
         logging.info("Cleaning up {{class_prefix}}Controller")
 
-    @override
     def get(self, path, with_metadata=False):
         try:
             return self.param_tree.get(path, with_metadata)
@@ -45,7 +40,6 @@ class {{class_prefix}}Controller(BaseController):
             logging.error(error)
             raise {{class_prefix}}Error(error)
 
-    @override
     def set(self, path, data):
         try:
             self.param_tree.set(path, data)
