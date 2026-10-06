@@ -29,7 +29,7 @@ Copier will then prompt various inputs, with default options, to name the projec
 🎤 The organisation that owns the Github repo for this project
    stfc-aeg
 🎤 The URL of the github repo for this project
-   https://github.com/stfc-aeg/new_adapter
+   https://github.com/stfc-aeg/new-adapter
 
 Copying from template version 1.0.0
     create  README.md
