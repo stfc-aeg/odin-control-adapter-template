@@ -1,0 +1,58 @@
+_subdirectory: template
+#questions
+project_name:
+  type: str
+  help: Name of the Project.
+package_name:
+  type: str
+  help: Name of the Python package this project will create.
+  default: "{{ project_name.lower().replace(' ', '-') }}"
+  validator: >-
+        {% if not (package_name | regex_search('^[a-z][a-z0-9\_\-\.]+[a-z0-9]$')) %}
+        Must consist of ASCII letters, digits, underscores "_", hyphens "-" and periods ".". It must not start or end with an underscore, hyphen or period.
+        {% endif %}
+author_name: 
+  type: str
+  help: Your Name
+author_email:
+  type: str
+  help: Your Email Address
+  default: "{{author_name.lower().replace(' ', '.')}}@stfc.ac.uk"
+  validator: >-
+        {% if not (author_email | regex_search('([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')) %}
+        Please enter a valid email address
+        {% endif %}
+description:
+  type: str
+  help: "Short description for the Python Package"
+github_org:
+  type: str
+  help: "The organisation that owns the Github repo for this project"
+  default: "stfc-aeg"
+github_url:
+  type: str
+  help: "The URL of the github repo for this project"
+  default: "https://github.com/{{github_org}}/{{package_name}}"
+
+#computed fields
+class_prefix:
+  type: str
+  default: "{{project_name.replace('-', ' ').replace('_', ' ').title().replace(' ', '')}}"
+  when: false
+
+module_name:
+  type: str
+  default: "{{package_name.lower().replace('-', '_').replace(' ', '_')}}"
+  when: false
+
+
+_message_after_copy: |
+  Your Project "{{project_name}}" has been created successfully!
+  
+  Next Steps:
+  1. Change directory to the project root:
+     $ cd {{ _copier_conf.dst_path }}
+  2. Initialise Git Repo (if not already done):
+     $ git init
+  3. Install into Python Environment
+     $ pip install -e .
